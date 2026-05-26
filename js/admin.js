@@ -159,18 +159,18 @@ const DEFAULT_CONFIG = {
   levels: [
     { level: '夯',     minScore: 3,  color: '#f0c040', icon: '👑', description: '星河为你流转，天命之人降临！你已经站在了人类金字塔的顶端，众生仰望吧。' },
     { level: '顶尖',   minScore: 2,  color: '#a855f7', icon: '💎', description: '紫微星下凡，才华与气运并存。你的存在本身，就是一种降维打击。' },
-    { level: '人上人', minScore: 1,  color: '#3b82f6', icon: '🌟', description: '恭喜你从NPC群体中脱颖而出，获得了"有姓名"的待遇！前途一片光明。' },
+    { level: '人上人', minScore: 1,  color: '#3b82f6', icon: '🌟', description: '恭喜你从NPC群体中脱颖而出，获得了「有姓名」的待遇！前途一片光明。' },
     { level: 'npc',    minScore: 0,  color: '#9ca3af', icon: '🌐', description: '欢迎来到地球OL，你获得了标准玩家身份卡。平凡但不平庸，世界因你而完整。' },
     { level: '拉',     minScore: -1, color: '#f97316', icon: '😅', description: '检测到你的人生配置可能需要重启...不过没关系，大器晚成嘛！' },
-    { level: '拉爆了', minScore: -99,color: '#ef4444', icon: '💀', description: '恭喜触发隐藏成就——"反向欧皇"！换个服务器试试？这个号建议删档重练。' }
+    { level: '拉爆了', minScore: -99,color: '#ef4444', icon: '💀', description: '恭喜触发隐藏成就——「反向欧皇」！换个服务器试试？这个号建议删档重练。' }
   ],
   funTexts: {
     '夯':     ['你是天命之人，星河为你流转，全世界都在给你让路！','天选之子！你的出场自带BGM，路人都忍不住多看你两眼。','这个段位的人，出门记得戴墨镜，因为你的光芒太刺眼了。'],
     '顶尖':   ['紫微星下凡也不过如此了，你已经超越了99%的凡人。','强者从不抱怨环境，因为你走到哪，环境就变成什么样。','你的存在就是对其他人的降维打击。'],
-    '人上人': ['你已经成功从NPC群中脱颖而出，恭喜解锁"有姓名"成就！','人生如戏，你已经从群演晋升为男二/女二了，继续冲！','别人还在刷初始，你已经穿上第一件装备了。'],
-    'npc':    ['恭喜你获得了"地球OL"标准玩家身份，平凡但安全。','你好，编号 #9527，请在规定区域内活动，不要超出边界。','你就是世界的基石，没有你，主角们都不知道该跟谁对话。'],
-    '拉':     ['咳咳…系统检测到你的人生配置可能需要重启一下。','俗话说"大器晚成"，你可能属于"大器还没开始成"那种。','别灰心，至少你在"拉"这个赛道上是顶尖的。'],
-    '拉爆了': ['恭喜触发隐藏成就——"反向欧皇"！你的存在本身就是个奇迹。','别人逆天改命，你是逆命改天…不好意思方向反了。','系统建议：换个服务器试试？也许这个号需要删档重练。']
+    '人上人': ['你已经成功从NPC群中脱颖而出，恭喜解锁「有姓名」成就！','人生如戏，你已经从群演晋升为男二/女二了，继续冲！','别人还在刷初始，你已经穿上第一件装备了。'],
+    'npc':    ['恭喜你获得了「地球OL」标准玩家身份，平凡但安全。','你好，编号 #9527，请在规定区域内活动，不要超出边界。','你就是世界的基石，没有你，主角们都不知道该跟谁对话。'],
+    '拉':     ['咳咳…系统检测到你的人生配置可能需要重启一下。','俗话说「大器晚成」，你可能属于「大器还没开始成」那种。','别灰心，至少你在「拉」这个赛道上是顶尖的。'],
+    '拉爆了': ['恭喜触发隐藏成就——「反向欧皇」！你的存在本身就是个奇迹。','别人逆天改命，你是逆命改天…不好意思方向反了。','系统建议：换个服务器试试？也许这个号需要删档重练。']
   }
 };
 
@@ -179,7 +179,7 @@ let config = JSON.parse(JSON.stringify(DEFAULT_CONFIG));
 
 // ---------- 加载配置 ----------
 function loadConfig() {
-  const saved = localStorage.getItem('personality-star-config');
+  const saved = localStorage.getItem('personality-star-config-v2');
   if (saved) {
     try {
       const parsed = JSON.parse(saved);
@@ -326,7 +326,7 @@ function updateFunTexts(level, value) {
 
 // ---------- 保存 ----------
 function saveAndApply() {
-  localStorage.setItem('personality-star-config', JSON.stringify(config));
+  localStorage.setItem('personality-star-config-v2', JSON.stringify(config));
   showToast('✅ 配置已保存！主站将使用新评分标准');
 }
 
@@ -369,7 +369,7 @@ function handleImport(event) {
 function resetToDefault() {
   if (confirm('确定恢复默认配置吗？当前修改将丢失。')) {
     config = JSON.parse(JSON.stringify(DEFAULT_CONFIG));
-    localStorage.removeItem('personality-star-config');
+    localStorage.removeItem('personality-star-config-v2');
     renderAll();
     showToast('🔄 已恢复默认配置');
   }
